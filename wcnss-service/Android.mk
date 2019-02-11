@@ -7,6 +7,11 @@ endif
 LOCAL_MODULE := wcnss_service
 LOCAL_C_INCLUDES += $(TARGET_OUT_HEADERS)/common/inc/
 LOCAL_SRC_FILES := wcnss_service.c
+
+ifneq ($(TARGET_DISABLE_WCNSS_CONFIG_COPY),true)
+LOCAL_CFLAGS += -DWCNSS_COPY_CONFIG
+endif
+
 ifeq ($(strip $(TARGET_USES_QCOM_WCNSS_QMI)),true)
 LOCAL_CFLAGS += -DWCNSS_QMI
 LOCAL_C_INCLUDES += $(TARGET_OUT_HEADERS)/qmi-framework/inc
